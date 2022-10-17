@@ -1,0 +1,36 @@
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+from sys import stdin,setrecursionlimit
+setrecursionlimit(10**7)
+
+def maxSubarraySum(arr, n):
+    sum = 0
+    max1 = 0
+    for i in range(0,n):
+        sum +=arr[i]
+        if sum>0:
+            max1 = max(max1,sum)
+        else:
+            sum = 0
+    return max1
+
+
+#taking inpit using fast I/O
+def takeInput() :
+	
+    n =  int(input())
+
+    if(n == 0) :
+        return list(), n
+
+    arr = list(map(int, stdin.readline().strip().split(" ")))
+
+    return arr, n
+
+
+#main
+arr, n = takeInput()
+print(maxSubarraySum(arr, n))
