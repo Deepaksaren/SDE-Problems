@@ -1,0 +1,23 @@
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+from os import *
+from sys import *
+from collections import *
+import math
+
+def findMajorityElement(arr, n):
+	# Write your code here.
+    dict={}
+    for i in range(n):
+        if arr[i] not in dict:
+            dict[arr[i]] = 1
+        else:
+            dict[arr[i]]+=1
+    maxo = math.floor(n/2)
+    for key, value in dict.items():
+        if value > maxo:
+            return key
+    return -1
