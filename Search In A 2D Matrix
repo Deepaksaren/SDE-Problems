@@ -1,0 +1,22 @@
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+def findTargetInMatrix(mat, m, n, target):
+	# Write your code here.
+    row = 0
+    col = len(mat[0])-1
+    while(row <= len(mat)-1 and col >= 0):
+        if(mat[row][col] == target):
+            return True
+        elif(mat[row][col] > target):
+            col-=1
+        else:
+            row+=1
+    return False
