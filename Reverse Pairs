@@ -1,0 +1,44 @@
+def merge(arr,left,mid,right,temp):
+    j=mid
+    inv=0
+    for i in range(left,mid):
+        while(j<=right and arr[i]>(arr[j]*2)):
+            j+=1
+        inv+=(j-mid)
+    i=left
+    j=mid
+    k=left
+    while(i<mid and j<=right):
+        if(arr[i]<=arr[j]):
+            temp[k]=arr[i]
+            i+=1
+            k+=1
+        else:
+            temp[k]=arr[j]
+            k+=1
+            j+=1
+    while(i<mid):
+        temp[k]=arr[i]
+        i+=1
+        k+=1
+    while(j<=right):
+        temp[k]=arr[j]
+        j+=1
+        k+=1
+    for i in range(right+1):
+        arr[i] = temp[i]
+    return inv
+def mergesort(arr,left,right,temp):
+    if(left>=right):
+        return 0
+    inv=0
+    if(left<right):
+        mid=(left+right)//2
+        inv+=mergesort(arr,left,mid,temp)
+        inv+=mergesort(arr,mid+1,right,temp)
+        inv+=merge(arr,left,mid+1,right,temp)
+    return inv
+def reversePairs(arr, n):
+    temp=[0]*n
+    res=mergesort(arr,0,n-1,temp)
+    return res
