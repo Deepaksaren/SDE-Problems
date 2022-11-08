@@ -1,0 +1,23 @@
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+def LongestSubsetWithZeroSum(arr):
+    dict={}
+    maxcount=0
+    sum=0
+    for i in range(len(arr)):
+        sum=sum+arr[i]
+        if(sum==0):
+            maxcount=i+1
+        elif(sum not in dict):
+            dict[sum]=i
+        else:
+            maxcount=max(maxcount, (i-dict[sum]))
+    return maxcount
