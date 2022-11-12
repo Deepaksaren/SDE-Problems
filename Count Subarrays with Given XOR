@@ -1,0 +1,26 @@
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+def subarraysXor(arr, x):
+    xor=0
+    count=0
+    dict={}
+    for i in range(len(arr)):
+        xor^=arr[i]
+        if(xor==x):
+            count+=1
+        y=xor^x
+        if y in dict:
+            count+=dict[y]
+        if xor in dict:
+            dict[xor]+=1
+        else:
+            dict[xor]=1
+    return count
