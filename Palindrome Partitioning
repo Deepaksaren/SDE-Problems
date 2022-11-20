@@ -1,3 +1,18 @@
+input-b11b
+op-Desired Output
+["1", "1", "b", "b"]
+["11", "b", "b"]
+["b11b"]
+
+input - 21vaav12
+Desired Output
+["1", "1", "2", "2", "a", "a", "v", "v"]
+["1", "1", "2", "2", "aa", "v", "v"]
+["1", "1", "2", "2", "vaav"]
+["1vaav1", "2", "2"]
+["21vaav12"]
+
+
 from os import *
 from sys import *
 from collections import *
