@@ -1,0 +1,88 @@
+input - 1
+4 4
+1 2 3 4
+5 6 7 8
+9 10 11 12
+13 14 15 16
+
+Desired Output
+
+5 1 2 3 
+9 10 6 4 
+13 11 7 8 
+14 15 16 12 
+
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+def helper(mat,rs,cs,re,ce):
+    if rs>=re or cs>=ce:
+        return
+    if rs>=re-1 or cs>=ce-1:
+        return
+    prev=mat[rs+1][cs]
+    cur=prev
+    for i in range(cs,ce):
+        cur=mat[rs][i]
+        mat[rs][i]=prev
+        prev=cur
+    rs+=1
+    for i in range(rs,re):
+        cur=mat[i][ce-1]
+        mat[i][ce-1]=prev
+        prev=cur
+    ce-=1
+    for i in range(ce-1,cs-1,-1):
+        cur=mat[re-1][i]
+        mat[re-1][i]=prev
+        prev=cur
+    re-=1
+    for i in range(re-1,rs-1,-1):
+        cur=mat[i][cs]
+        mat[i][cs]=prev
+        prev=cur
+    cs+=1
+    helper(mat,rs,cs,re,ce)
+def rotateMatrix(mat, n, m):
+    helper(mat,0,0,n,m)
+    
+#     def rotatehelper(mat, rs, cs, re, ce):
+#     if(rs >= re or cs >= ce):
+#         return
+#     if(rs >= re-1 or cs >= ce-1):
+#         return
+#     prev = mat[rs+1][cs]
+#     cur = prev
+    
+    
+#     for i in range(cs, ce):
+#         cur = mat[rs][i]
+#         mat[rs][i] = prev
+#         prev = cur
+#     rs +=1
+#     for i in range(rs, re):
+#         cur = mat[i][ce-1]
+#         mat[i][ce-1] = prev
+#         prev = cur
+#     ce -=1
+# #     if(rs < re):
+#     for i in range(ce-1, cs-1, -1):
+#         cur = mat[re-1][i]
+#         mat[re-1][i] = prev
+#         prev = cur
+#     re -=1
+# #     if(cs < ce):
+#     for i in range(re-1, rs-1, -1):
+#         cur = mat[i][cs]
+#         mat[i][cs] = prev
+#         prev = cur
+#     cs +=1
+    
+#     rotatehelper(mat, rs, cs, re, ce)
