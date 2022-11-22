@@ -1,0 +1,37 @@
+input -> 3
+xxy yxxyxxy
+a baac
+cfg cgfgfc
+
+Desired Output
+
+YES
+YES
+NO
+'''
+    Time complexity: O((N - M) * M)
+    Space complexity: O(1)
+
+    Where N is the length of string s and M is length of string p.
+'''
+
+def findPattern(p:str, s:str):
+    n = len(s)
+    m = len(p)
+    lst=[s[i:i+m] for i in range(n)]
+    if p in lst:
+        return True
+#     for i in range (n - m + 1):
+#         j = 0
+#         while j < m:
+#             if p[j] == s[i+j]:
+#                 j+=1
+#                 continue
+#             # If there is a mismatch, we do not check furthur.
+#             else:
+#                 break
+#             j += 1
+#         # If j is equal to m then it means p is present in s.
+#         if j ==m:
+#             return True
+    return False
