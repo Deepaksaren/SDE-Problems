@@ -1,0 +1,59 @@
+from collections import deque
+class Solution:
+
+    #Function to find minimum time required to rot all oranges. 
+	def orangesRotting(self, grid):
+		#Code here
+		row = len(grid)
+		col = len(grid[0])
+		vis =[[False for _ in range(col)]for _ in range(row)]
+		mintime = 0
+		fresh = 0
+		countfresh=0
+		q=deque()
+		for i in range(row):
+		    for j in range(col):
+		        if grid[i][j] == 2:
+		            q.append([[i,j],0])
+	            if grid[i][j] == 1:
+	                fresh+=1
+	    drow = [0,0,-1,+1]
+	    dcol = [-1,+1,0,0]
+        while len(q):
+            popele = q.popleft()
+            r = popele[0][0]
+            c = popele[0][1]
+            t = popele[1]
+            mintime = max(mintime, t)
+            for i in range(4):
+                row1 = r+drow[i]
+                col1 = c+dcol[i]
+                if row1 >= 0 and col1 >=0 and row1<row and col1<col and grid[row1][col1] == 1 and vis[row1][col1] == False:
+                    q.append([[row1,col1],t+1])
+                    vis[row1][col1] = True
+                    countfresh+=1
+        if countfresh!=fresh:
+            return -1
+        return mintime
+                    
+            
+		            
+
+
+#{ 
+ # Driver Code Starts
+from queue import Queue
+
+if __name__ == '__main__':
+	T=int(input())
+	for i in range(T):
+		n, m = map(int, input().split())
+		grid = []
+		for _ in range(n):
+			a = list(map(int, input().split()))
+			grid.append(a)
+		obj = Solution()
+		ans = obj.orangesRotting(grid)
+		print(ans)
+
+# } Driver Code Ends
