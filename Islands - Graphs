@@ -1,0 +1,69 @@
+Islands
+Send Feedback
+An island is a small piece of land surrounded by water . A group of islands is said to be connected if we can reach from any given island to any other island in the same group . Given V islands (numbered from 0 to V-1) and E connections or edges between islands. Can you count the number of connected groups of islands.
+Input Format :
+The first line of input contains two integers, that denote the value of V and E.
+Each of the following E lines contains two integers, that denote that there exists an edge between vertex a and b. 
+Output Format :
+Print the count the number of connected groups of islands
+Constraints :
+0 <= V <= 1000
+0 <= E <= (V * (V-1)) / 2
+0 <= a <= V - 1
+0 <= b <= V - 1
+Time Limit: 1 second
+Sample Input 1:
+5 8
+0 1
+0 4
+1 2
+2 0
+2 4
+3 0
+3 2
+4 3
+Sample Output 1:
+1 
+
+
+# Write your code here
+# Write your code here
+import queue
+from sys import stdin, setrecursionlimit
+setrecursionlimit(10**6)
+
+
+class Graph:
+    def __init__(self, nVertices):
+        self.nVertices = nVertices
+        self.adj = [[0 for i in range(nVertices)] for j in range(nVertices)]
+
+    def addEdge(self, v1, v2):
+        self.adj[v1][v2] = 1
+        self.adj[v2][v1] = 1
+
+    def __dfs(self, vertex, visited):
+        visited[vertex] = True
+        for i in range(self.nVertices):
+            if(visited[i] == False and self.adj[vertex][i] == 1):
+                self.__dfs(i, visited)
+
+    def numconnected(self):
+        visited = [False for i in range(self.nVertices)]
+        count = 0
+        for i in range(self.nVertices):
+            if(visited[i] == False):
+                count +=1
+                self.__dfs(i, visited)
+        return count
+li = stdin.readline().strip().split()
+V = int(li[0])
+E = int(li[1])
+g=Graph(V)
+
+for i in range(E):
+    arr = stdin.readline().strip().split()
+    v1 = int(arr[0])
+    v2 = int(arr[1])
+    g.addEdge(v1, v2)
+print(g.numconnected())
