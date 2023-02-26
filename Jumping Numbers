@@ -1,0 +1,86 @@
+Jumping Numbers
+Send Feedback
+Given a number x, print all the jumping numbers below or equal to x. A number is called a jumping number if for a number all the adjacent digits differ by 1. All single digit numbers are also jumping numbers.
+Eg. 432345, 32, 543, 989, 12, 21 are jumping numbers whereas 843, 485, 9348 are not.
+Input Format :
+An integer x.
+Output Format :
+All the jumping numbers smaller than or equal to x, separated by space and generated in increasing order of most significant digit.
+Input Constraints :
+1 <= x <= 10^5
+Sample Input 1 :
+10
+Sample Output 1 :
+0 1 10 2 3 4 5 6 7 8 9
+Sample Input 2 :
+50
+Sample Output 2 :
+0 1 12 10 2 23 21 3 34 32 4 45 43 5 6 7 8 9
+
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+## Read input as specified in the question.
+## Print output as specified in the question.
+
+class queue:
+    def __init__(self):
+        self.lst = []
+
+    def enqueue(self,num):
+        self.lst.append(num)
+
+    def dequeue(self):
+        return self.lst.pop(0)
+
+    def isempty(self):
+        return self.lst == []
+
+def bfs(x, num):
+    q = queue()
+    q.enqueue(num)
+
+    while(not q.isempty()):
+        num = q.dequeue()
+
+        if num <= x:
+            print(str(num), end = ' ')
+            last_digit = num%10
+
+            if last_digit == 0:
+                q.enqueue((num*10)+(last_digit+1))
+            elif last_digit == 9:
+                q.enqueue((num*10)+(last_digit-1))
+            else:
+                q.enqueue((num*10)+(last_digit+1))
+                q.enqueue((num*10)+(last_digit-1))
+
+def printJumping(x):
+    print(str(0),end=' ')
+    for i in range(1,10):
+        bfs(x,i)
+
+n = int(input())
+printJumping(n)
