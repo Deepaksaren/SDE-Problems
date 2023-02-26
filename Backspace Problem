@@ -1,0 +1,61 @@
+Backspace Problem
+Problem Description: We are given a string consisting of lower case
+characters and hashes(#) where each hash represents a backspace and
+the task is to find the final string after implementation of all the
+backspaces in the string.And we are also given that there will be no
+condition where we use backspace on empty string.
+Input: A String.
+For example: String = coding#nin##jas####
+Output= codin
+Solution Description: We would maintain a stack to solve this problem.
+As we traverse through the string there are two possibilities:
+Case 1: If we encounter a character, then push it into the stack.
+Case 2: In case of #, pop the top element of the stack,if not empty.
+Let us take an example to solve this problem:
+Input String : coding#nin##jas####
+1) First we encounter ‘c’ and push it into the stack.
+2) Then we get another character ‘o’, push it.
+3) Similarly , we push ‘d’, ‘i’, ‘n’ and ‘g’ into the stack.
+4) Now, next in the string we get a ‘#’, so we need to pop the topmost
+element of the stack.
+5) Next three characters are ‘n’, ‘i’ and ‘n’.
+6) Now a ‘#’ is encountered, so pop the topmost element ‘n’.
+7) Another #, so another pop.
+8) Next three are characters ‘j’ , ‘a’ and ‘s’, so pushing them into the
+stack.
+9) Next four are ‘#’, hence we pop four elements from the stack.
+Now all we need to do is create a string and add each popping character
+of the stack in reverse order.
+Pseudo-code:
+Method: Backspace
+Input: A string s
+Create a stack of characters.
+Initialize i=0.
+while(i<string_length)
+if(s[i] is a character)
+Push it into the stack
+else
+Pop from the stack
+Now pop from the stack till it becomes empty.
+And store it in reverse order into a string ans.
+return ans
+
+
+
+## Read input as specified in the question.
+## Print output as specified in the question.
+def backsapce(input_string):
+    stack = []
+    for i in range(len(input_string)):
+       if input_string[i] != '#':
+           stack.append(input_string[i])
+       elif len(stack) > 0:
+           if input_string[i] == '#':
+               stack.pop()
+    ans = "".join(stack)
+            
+
+    print(ans)
+
+input_string = input()
+backsapce(input_string)
